@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 10:29:23 by abouabra          #+#    #+#             */
-/*   Updated: 2023/01/20 17:13:33 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:23:31 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 void				*my_alloc(size_t size);
 void				garbage_collector(void *adress, int arg);
 void				custom_exit(int exit_code);
+
+int ft_strchr_num(char *s, int c);
 
 #endif

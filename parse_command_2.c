@@ -6,28 +6,59 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:27:14 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 17:15:36 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:30:19 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/ft_dprintf.h"
+#include "libft/get_next_line.h"
+#include "libft/libft.h"
 #include "minishell.h"
+#include <stdio.h>
 
 void	remove_quotes(t_args *vars,t_fill_info *info, char **arr)
 {
-	int i;
+	int		i;
+	int		num_1;
+	int		num_2;
+	char	**tmp;
+	char	*new;
 	(void) vars;
+	
 	i=-1;
 	while(arr[++i])
 	{
 		if(ft_strchr(arr[i], '\''))
 		{
-			arr[i] = ft_strtrim(arr[i], "'");
-			info->quote_type = 1;
+			num_1 = ft_strchr_num(arr[i], '\'');
+			if(arr[i][num_1 -1] == '=')
+			{
+				tmp = ft_split(arr[i], '=');
+				new = ft_strtrim(tmp[1], "\'");
+				arr[i] = ft_strjoin(tmp[0], "=");
+				arr[i] = ft_strjoin(arr[i], new);
+			}
+			else
+			{
+				arr[i] = ft_strtrim(arr[i], "'");
+				info->quote_type = 1;
+			}
 		}
-		if(ft_strchr(arr[i], '\"'))
+		else if(ft_strchr(arr[i], '\"'))
 		{
-			arr[i] = ft_strtrim(arr[i], "\"");
-			info->quote_type = 2;
+			num_2 = ft_strchr_num(arr[i], '\"');
+			if(arr[i][num_2 -1] == '=')
+			{
+				tmp = ft_split(arr[i], '=');
+				new = ft_strtrim(tmp[1], "\"");
+				arr[i] = ft_strjoin(tmp[0], "=");
+				arr[i] = ft_strjoin(arr[i], new);
+			}
+			else
+			{
+				arr[i] = ft_strtrim(arr[i], "\"");
+				info->quote_type = 2;
+			}
 		}
 	}
 }

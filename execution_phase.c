@@ -6,32 +6,28 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:08:47 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 17:24:19 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:05:52 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_dprintf.h"
-#include "libft/get_next_line.h"
-#include "libft/libft.h"
 #include "minishell.h"
-#include <stdio.h>
-#include <sys/fcntl.h>
 
-// void execute_built_in(t_args *vars, t_command *command)
-// {
-// 	if(!ft_strncmp("cd", command->command_args[0], -1))
-// 		cd(vars, command);
-// 	if(!ft_strncmp("pwd", command->command_args[0], -1))
-// 		pwd();
-// 	if(!ft_strncmp("env", command->command_args[0], -1))
-// 		env(vars);
-// 	if(!ft_strncmp("exit", command->command_args[0], -1))
-// 		my_exit(command->command_args[0]);
-// 	if(!ft_strncmp("export", command->command_args[0], -1))
-// 		env_export(vars, command);
-// 	if(!ft_strncmp("unset", command->command_args[0], -1))
-// 		unset(vars, command->command_args[1]);
-// }
+void execute_built_in(t_args *vars, t_command *command)
+{
+	if(!ft_strncmp("cd", command->command_args[0], -1))
+		cd(vars, command);
+	if(!ft_strncmp("pwd", command->command_args[0], -1))
+		pwd();
+	if(!ft_strncmp("env", command->command_args[0], -1))
+		env(vars);
+	if(!ft_strncmp("exit", command->command_args[0], -1))
+		my_exit(command->command_args[0]);
+	if(!ft_strncmp("export", command->command_args[0], -1))
+		env_export(vars, command);
+	if(!ft_strncmp("unset", command->command_args[0], -1))
+		unset(vars, command->command_args[1]);
+}
+
 char **convert_env_to_arr(t_env *head)
 {
 	char **arr;
@@ -55,7 +51,7 @@ char **convert_env_to_arr(t_env *head)
 	return arr;
 }
 
-void execute_the_commands(t_args *vars, t_command *tmp, int i)
+void execute(t_args *vars, t_command *tmp, int i)
 {
 	pid_t pid;
 	int fd;
@@ -110,11 +106,16 @@ void execute_the_commands(t_args *vars, t_command *tmp, int i)
 			dup2(fd, 0);
 			close(fd);
 		}
-		// if (!ft_strncmp("echo", tmp->command_args[0], -1))
-		// 	echo(vars, tmp);
-		// else
+		if (!ft_strncmp("echo", tmp->command_args[0], -1))
+		{
+			echo(tmp);
+			exit(0);
+		}
+		else
+		{
 			execve(tmp->command_path, tmp->command_args, convert_env_to_arr(vars->env_head));
 			exit(1);
+		}
 		
 	}
 	if (i > 0)
@@ -131,38 +132,36 @@ void execute_the_commands(t_args *vars, t_command *tmp, int i)
 	vars->exit_status = WEXITSTATUS(status);
 }
 
-// int is_built_in(t_command *command,char **built_in)
-// {
-// 	int i;
-
-// 	i = -1;
-//     while (built_in[++i])
-// 		if(!ft_strncmp(command->command_args[0], built_in[i], -1))
-// 			return 1;
-// 	return 0;
-// }
+int is_built_in(char *name)
+{
+	int i;
+	char *built_in;
+	char **arr;
+	
+	built_in = "cd|echo|pwd|export|unset|env|exit";
+	arr = ft_split(built_in, '|');
+	i = -1;
+    while (arr[++i])
+		if(!ft_strncmp(name, arr[i], -1))
+			return 1;
+	return 0;
+}
 
 void execution_phase(t_args *vars)
 {
 	t_command *tmp;
 	
     tmp = vars->command_head;
-	// char *built_in = "cd|echo|pwd|export|unset|env|exit";
-	// char **arr = ft_split(built_in, '|');
+
     int i  = -1;
     while (++i <  vars->command_count)
     {
-		// if (is_built_in(tmp,arr) && ft_strncmp("echo", tmp->command_args[0], -1))
-		// 	execute_built_in(vars, tmp);
-		// else
-		// {
-        	execute_the_commands(vars, tmp, i);
-			
-			// wait(NULL);
-		// }
+		if (is_built_in(tmp->command_args[0]) && ft_strncmp("echo", tmp->command_args[0], -1))
+			execute_built_in(vars, tmp);
+		else
+        	execute(vars, tmp, i);
 		tmp = tmp->next;
     }
-	// free(built_in);
-}
+ }
 
 

@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:30:57 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 17:28:30 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:19:41 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@
 char *set_ps1(t_args *vars)
 {
 	char *ps1;
-	// char *user;
-	// char *pwd;
+	char *user;
+	char *pwd;
 	// char *hostname;
+	(void) vars;
 	
 
 	// ps1 = "───[\e[1;34mroot\e[0m]──[\e[1;31mls\e[0m]\n─>";
 	
-	// char *user =get_env_data(vars, "USER");
-	// char *pwd =get_env_data(vars, "PWD");
-	// ps1 = ft_strjoin("───[\e[1;34m", user);
-	// ps1 = ft_strjoin(ps1, "\e[0m]──[\e[1;31m");
-	// ps1 = ft_strjoin(ps1, pwd);
-	// ps1 = ft_strjoin(ps1, "\e[0m]\n─>");
-	
+	user =get_env_data(vars, "USER");
+	pwd =get_env_data(vars, "PWD");
+	ps1 = ft_strjoin("───[\e[1;34m", user);
+	ps1 = ft_strjoin(ps1, "\e[0m]──[\e[1;31m");
+	ps1 = ft_strjoin(ps1, pwd);
+	ps1 = ft_strjoin(ps1, "\e[0m]\n─>");
 	// char *ps1 = "minishell> ";
 	// ps1 ="[\e[1;32muser\e[0m@\e[1;33mhost\e[0m:\e[1;35m~\e[0m]$";
 
@@ -46,8 +46,7 @@ char *set_ps1(t_args *vars)
 	// ps1 = ft_strjoin(ps1, "\e[0m:\e[1;31m");
 	// ps1 = ft_strjoin(ps1, pwd);
 	// ps1 = ft_strjoin(ps1, " $\e[0m ");
-	(void) vars;
-	ps1 = "minishell> ";
+	// ps1 = "minishell> ";
 	return ps1;
 }
 

@@ -6,16 +6,19 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:27:14 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 17:27:00 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:06:25 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/ft_dprintf.h"
 #include "libft/get_next_line.h"
+#include "libft/libft.h"
 #include "minishell.h"
 
 int check_permision(char *command_path, char *name, int arg)
 {
-	
+	if(is_built_in(name))
+		return 0;
 	if(arg == 1)
 	{
 		if (!command_path)
@@ -57,17 +60,28 @@ void expand_variables(t_args *vars, t_fill_info *info, char **args)
 {
 	int i;
 	char *data;
-
+	char *str;
+	int ofsset;
+	char *new;
+	
 	i= -1;
 	while(args[++i])
 	{
-		if(ft_strchr(args[i], '$') && info->quote_type != 1)
+		str = ft_strchr(args[i], '$');
+		if(str && info->quote_type != 1)
 		{
-			data = get_env_data(vars, ++args[i]);
-			if(data)
-				args[i] = ft_strdup(data);
+			data = get_env_data(vars, ++str);
+			ofsset  = ft_strchr_num(args[i], '$');
+			new = ft_substr(args[i], 0, ofsset);
+			if(!ft_strncmp(str, "?", -1))
+				args[i] = ft_strjoin(new, ft_itoa(vars->exit_status));
 			else
-				args[i] = ft_strdup(" ");
+			{
+				if(data)
+					args[i] = ft_strjoin(new, data);
+				else
+					args[i] = ft_strjoin(new, "");
+			}
 		}
 	}
 }
