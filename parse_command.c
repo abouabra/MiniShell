@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:27:14 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 17:05:06 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:27:00 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,21 +120,9 @@ void remove_spaces_in_between(t_args *vars)
 		vars->initial_commands[i] = ft_strtrim(vars->initial_commands[i], " ");
 }
 
-
 void	parse_commands(t_args *vars, char *line)
 {
 	vars->initial_commands = initial_split(vars, line);
 	remove_spaces_in_between(vars);
 	parsing_commands(vars, vars->initial_commands);
-	
-	
-	
-	
-	t_command *tst;
-	tst = vars->command_head;
-	while(tst)
-	{
-		print_command(tst);
-		tst = tst->next;
-	}
 }

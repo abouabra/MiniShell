@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:08:47 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 17:15:33 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:24:19 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,7 @@ void execute_the_commands(t_args *vars, t_command *tmp, int i)
 		vars->prev_pipefd[1] = vars->next_pipefd[1];
 	}
 	waitpid(pid, &status, 0);
-	int exit_status = WEXITSTATUS(status);
-	dprintf(1, "EXIT_CODE: %d\n",exit_status);
+	vars->exit_status = WEXITSTATUS(status);
 }
 
 // int is_built_in(t_command *command,char **built_in)

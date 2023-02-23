@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:30:01 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 16:17:45 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:23:27 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct t_args
 	int					is_quote;
 	int					prev_pipefd[2];
 	int					next_pipefd[2];
-
+	int					exit_status;
 	t_command			*command_head;
 	t_env				*env_head;
 }						t_args;
@@ -136,4 +136,6 @@ void					init_signal(t_args *vars);
 
 //extra 
 void print_command(t_command *command);
+void	debug_menu(t_args *vars);
+
 #endif

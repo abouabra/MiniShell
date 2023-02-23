@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:11:02 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/22 22:36:39 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:23:34 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,17 @@ void print_command(t_command *command)
 	printf("HERDOC_LIMITER: %s\n",command->herdoc_limiter);
 	
 	printf("\n");
+}
+
+
+void	debug_menu(t_args *vars)
+{
+	t_command *tst;
+	tst = vars->command_head;
+	while(tst)
+	{
+		print_command(tst);
+		tst = tst->next;
+	}
+	dprintf(1, "EXIT_CODE: %d\n",vars->exit_status);
 }
