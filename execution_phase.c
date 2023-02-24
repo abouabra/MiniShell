@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:08:47 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 20:05:52 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:34:11 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void execute(t_args *vars, t_command *tmp, int i)
 	if (pid == 0)
 	{
 		if(tmp->is_valid_command == 0)
-			exit(127);
+			custom_exit(127);
 		if (i > 0)
 		{
 			dup2(vars->prev_pipefd[0], 0);
@@ -82,7 +82,7 @@ void execute(t_args *vars, t_command *tmp, int i)
 		{
 			fd = open(tmp->input_file, O_RDONLY);
 			if(fd  == -1)
-				exit(1);
+				custom_exit(1);
 			dup2(fd, 0);
 			close(fd);
 		}
@@ -93,7 +93,7 @@ void execute(t_args *vars, t_command *tmp, int i)
 			else
 				fd = open(tmp->output_file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 			if(fd  == -1)
-				exit(1);
+				custom_exit(1);
 			dup2(fd, 1);
 			close(fd);
 		}
@@ -109,12 +109,12 @@ void execute(t_args *vars, t_command *tmp, int i)
 		if (!ft_strncmp("echo", tmp->command_args[0], -1))
 		{
 			echo(tmp);
-			exit(0);
+			custom_exit(0);
 		}
 		else
 		{
 			execve(tmp->command_path, tmp->command_args, convert_env_to_arr(vars->env_head));
-			exit(1);
+			custom_exit(1);
 		}
 		
 	}

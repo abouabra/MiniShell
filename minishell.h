@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:30:01 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 20:06:07 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:20:28 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <termios.h>
 
 typedef struct t_fill_info
 {
@@ -133,6 +134,9 @@ void					my_exit(char *arg);
 
 void					print_command(t_command *command);
 void					init_signal(t_args *vars);
+
+//signals
+void init_signal(t_args *vars);
 
 
 //extra 

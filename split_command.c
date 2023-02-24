@@ -6,10 +6,11 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:31:17 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/22 21:42:24 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:33:22 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/get_next_line.h"
 #include "minishell.h"
 
 static int	count_words(char *s)
@@ -58,7 +59,7 @@ char	**split_command(char *s)
 	k = 0;
 	in_word = 0;
 	phrase_count = count_words(s);
-	phrases = (char **)malloc((phrase_count + 1) * sizeof(char *));
+	phrases = (char **)my_alloc((phrase_count + 1) * sizeof(char *));
 	while (i < ft_strlen(s))
 	{
 		if (s[i] == ' ' && !in_single_quote && !in_double_quote)
@@ -66,7 +67,7 @@ char	**split_command(char *s)
 			if (in_word)
 			{
 				phrase_length = i - j;
-				phrases[k] = (char *)malloc((phrase_length + 1) * sizeof(char));
+				phrases[k] = (char *)my_alloc((phrase_length + 1) * sizeof(char));
 				ft_memcpy(phrases[k], s + j, phrase_length);
 				phrases[k][phrase_length] = '\0';
 				k++;
@@ -94,7 +95,7 @@ char	**split_command(char *s)
 	if (in_word)
 	{
 		phrase_length = i - j;
-		phrases[k] = (char *)malloc((phrase_length + 1) * sizeof(char));
+		phrases[k] = (char *)my_alloc((phrase_length + 1) * sizeof(char));
 		ft_memcpy(phrases[k], s + j, phrase_length);
 		phrases[k][phrase_length] = '\0';
 		k++;

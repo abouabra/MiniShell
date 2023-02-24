@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:55:49 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 20:02:20 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:20:23 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	my_exit(char *arg)
 	else
 		status = ft_atoi(arg);
 	printf("exit\n");
-	exit(status);
+	custom_exit(status);
 }
 
 void	pwd(void)

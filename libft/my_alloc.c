@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:27:26 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/19 16:27:10 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:58:26 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	garbage_collector(void *adress, int arg)
 {
 	static t_list	*head;
 	t_list			*node;
-
+	
 	if (arg)
 		ft_lstclear(&head, free);
 	else

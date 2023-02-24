@@ -6,10 +6,11 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:41:16 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 16:17:31 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:34:55 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/get_next_line.h"
 #include "minishell.h"
 
 t_command	*ft_last_command(t_command *lst)
@@ -47,7 +48,7 @@ t_command	*ft_new_command(t_fill_info *info)
 {
 	t_command	*node;
 
-	node = ft_calloc(1, sizeof(t_command));
+	node = my_alloc(sizeof(t_command));
 	if (!node)
 		return (0);
 	node->command_path = info->command_path;

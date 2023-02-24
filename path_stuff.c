@@ -6,10 +6,11 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:31:51 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/22 22:34:27 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:49:02 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "minishell.h"
 
 char **get_path(t_args *vars)

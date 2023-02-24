@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:27:14 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/23 20:06:25 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:16:57 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void expand_variables(t_args *vars, t_fill_info *info, char **args)
 		}
 	}
 }
+
 void parsing_commands(t_args *vars, char **commands)
 {
 	int i;

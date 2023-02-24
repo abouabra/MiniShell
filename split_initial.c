@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:31:10 by abouabra          #+#    #+#             */
-/*   Updated: 2023/01/20 17:31:12 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:33:28 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ char	**initial_split(t_args *vars, char *s)
 
 	phrase_count = count_words(s);
 	vars->command_count = phrase_count;
-	phrases = (char **)malloc((phrase_count + 1) * sizeof(char *));
+	phrases = (char **)my_alloc((phrase_count + 1) * sizeof(char *));
 	while (++i < ft_strlen(s))
 	{
 		if (s[i] == '|' && s[i + 1] != '|')
 		{
 			phrase_length = i - j;
-			phrases[k] = (char *)malloc((phrase_length + 1) * sizeof(char));
+			phrases[k] = (char *)my_alloc((phrase_length + 1) * sizeof(char));
 			ft_memcpy(phrases[k], s + j, phrase_length);
 			phrases[k][phrase_length] = '\0';
 			k++;
@@ -69,7 +69,7 @@ char	**initial_split(t_args *vars, char *s)
 		else if (s[i] == '&' && s[i + 1] == '&')
 		{
 			phrase_length = i - j;
-			phrases[k] = (char *)malloc((phrase_length + 1) * sizeof(char));
+			phrases[k] = (char *)my_alloc((phrase_length + 1) * sizeof(char));
 			ft_memcpy(phrases[k], s + j, phrase_length);
 			phrases[k][phrase_length] = '\0';
 			k++;
@@ -79,7 +79,7 @@ char	**initial_split(t_args *vars, char *s)
 		else if (s[i] == '|' && s[i + 1] == '|')
 		{
 			phrase_length = i - j;
-			phrases[k] = (char *)malloc((phrase_length + 1) * sizeof(char));
+			phrases[k] = (char *)my_alloc((phrase_length + 1) * sizeof(char));
 			ft_memcpy(phrases[k], s + j, phrase_length);
 			phrases[k][phrase_length] = '\0';
 			k++;
@@ -88,7 +88,7 @@ char	**initial_split(t_args *vars, char *s)
 		}
 	}
 	phrase_length = i - j;
-	phrases[k] = (char *)malloc((phrase_length + 1) * sizeof(char));
+	phrases[k] = (char *)my_alloc((phrase_length + 1) * sizeof(char));
 	ft_memcpy(phrases[k], s + j, phrase_length);
 	phrases[k][phrase_length] = '\0';
 	k++;
