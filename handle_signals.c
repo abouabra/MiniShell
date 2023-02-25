@@ -1,21 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_signals.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 18:30:46 by abouabra          #+#    #+#             */
+/*   Updated: 2023/02/25 20:12:33 by abouabra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-#include <signal.h>
 #include <stdio.h>
 
-void handle_signals(int sig, siginfo_t *info, void *vp)
+void handle_signals(int sig)
 {
-    (void) info;
-    (void) vp;
     if(sig == SIGQUIT)
     {
-        // printf("QUIT\n");
-        return;
+
     }
     if(sig == SIGINT)
     {
-        // kill(-1, SIGINT);
-        // while(wait(NULL) > 0);
-        return;
+		
     }
 }
 
@@ -24,8 +30,7 @@ void init_signal(t_args *vars)
     struct sigaction sa;
     (void) vars;
 
-    sa.sa_flags = SA_SIGINFO;
-    sa.sa_sigaction = handle_signals;
+    sa.sa_handler = handle_signals;
 
     sigaction(SIGQUIT, &sa, NULL);
     sigaction(SIGINT, &sa, NULL);

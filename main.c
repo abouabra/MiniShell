@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:30:57 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/24 18:13:03 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:12:55 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ int main(int ac, char **av, char **ev)
 	{
 		ps1 = set_ps1(vars);
 		line = readline(ps1);
-		// if(!line)
-		// 	custom_exit(vars->exit_status);
+		if(!line)
+		{
+			dprintf(1, "\n");
+			custom_exit(vars->exit_status);
+		}
 		if(line && line[0])
 		{
 			add_history(line);
