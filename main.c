@@ -6,15 +6,13 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:30:57 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/25 20:12:55 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:27:11 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/get_next_line.h"
 #include "libft/libft.h"
 #include "minishell.h"
-#include <stdio.h>
-#include <unistd.h>
 
 char *set_ps1(t_args *vars)
 {
@@ -63,7 +61,7 @@ int main(int ac, char **av, char **ev)
 		return 0;
 	vars->ev = ev;
 	set_env(vars);
-	init_signal(vars);
+	init_signal();
 	while(1)
 	{
 		ps1 = set_ps1(vars);
@@ -82,7 +80,6 @@ int main(int ac, char **av, char **ev)
 			vars->command_head = NULL;
 		}
 	}
-	clear_history();
 	custom_exit(0);
 	return 0;
 }

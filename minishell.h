@@ -6,7 +6,7 @@
 /*   By: abouabra < abouabra@student.1337.ma >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:30:01 by abouabra          #+#    #+#             */
-/*   Updated: 2023/02/24 18:20:28 by abouabra         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:22:40 by abouabra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct t_fill_info
 }	t_fill_info;
 
 //sort < input.txt | uniq -l  -a >> unique_sorted_output.txt > outfile.txt << HEREDOC
+
 typedef struct t_env
 {
 	char				*env_id;
@@ -133,10 +134,9 @@ void					env(t_args *vars);
 void					my_exit(char *arg);
 
 void					print_command(t_command *command);
-void					init_signal(t_args *vars);
 
 //signals
-void init_signal(t_args *vars);
+void init_signal(void);
 
 
 //extra 
